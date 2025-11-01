@@ -1,4 +1,4 @@
-# 🛰️ TwinGate IoT Digital Twin Demo
+# 🛰️ TwinGate — IoT Digital Twin Demo
 
 **TwinGate** is a lightweight **IoT + Digital Twin** demo connecting a **Raspberry Pi Pico** (MicroPython) to a **web-based 3D dashboard** via a Node.js WebSocket backend.  
 It uses an **ultrasonic sensor** and a **servo motor** to mirror real-world motion in a 3D twin.
@@ -44,27 +44,23 @@ DigiTwins-Workshop/
 
 ## 🧩 Getting Started
 
-### 1) Clone
-```bash
-git clone https://github.com/<your-username>/twingate.git
-cd twingate
-2) Backend (Node.js)
-Requirements: Node.js v18+
+### Installation Steps
 
-bash
-Copy code
-npm install
-node index.js
-Defaults to:
+1. Clone the repository
+   ```bash
+   git clone https://github.com/Arnold208/DigiTwins-Workshop.git
+   cd DigiTwins-Workshop
+   ```
 
-arduino
-Copy code
-http://localhost:3000
-Hosted (when available):
+2. Install and start backend (requires Node.js v18+)
+   ```bash
+   npm install
+   npm start
+   ```
 
-arduino
-Copy code
-https://digitwins.onrender.com
+Server endpoints:
+- Local development: `http://localhost:3000`
+- Production: `https://digitwins.onrender.com`
 3) Frontend (3D Twin)
 RoadTwin: https://roadtwin.netlify.app/
 
@@ -105,53 +101,53 @@ Enter a Room ID (e.g., leslie-871) and join.
 
 You’ll see an empty scene waiting for device telemetry.
 
-B) Point Your Device to the Same Room
-In your Pico firmware (twin-gate-firmware.py), set the WebSocket URL:
+### Device Configuration
 
-python
-Copy code
-WS_URL = "wss://digitwins.onrender.com/ws?roomId=<YOUR_ROOM_ID>&role=device"
-# Example:
-# WS_URL = "wss://digitwins.onrender.com/ws?roomId=leslie-871&role=device"
-If running backend locally:
+Configure your device's WebSocket URL in the Pico firmware (`twin-gate-firmware.py`):
 
-python
-Copy code
-WS_URL = "ws://localhost:3000/ws?roomId=<YOUR_ROOM_ID>&role=device"
+```python
+# For production server
+WS_URL = "wss://digitwins.onrender.com/ws?roomId=workshop-001&role=device"
+
+# For local development
+WS_URL = "ws://localhost:3000/ws?roomId=workshop-001&role=device"
+```
 Reboot the Pico. Once connected:
 
 The device auto-registers in the backend upon first telemetry message.
 
 The RoadTwin dashboard (in the same room) will show the device and start updating the 3D scene.
 
-C) (Optional) Manual Registration
-If your backend exposes a registration endpoint, you can also pre-register:
+### Manual Device Registration (Optional)
 
-http
-Copy code
+You can pre-register devices using the registration API:
+
+```http
 POST /api/devices
 Content-Type: application/json
 
 {
-  "devid": "pico-001",
-  "name": "Pico Ultrasonic Rig",
-  "roomId": "leslie-871"
+    "devid": "pico-001",
+    "name": "Distance Sensor Unit",
+    "roomId": "workshop-001"
 }
+```
 Not required for basic demos — the default flow auto-registers on first telemetry in most setups.
 
-D) Telemetry Shape (Example)
-Typical payload the device emits over WebSocket:
+### Telemetry Format
 
-json
-Copy code
+Example WebSocket payload:
+
+```json
 {
-  "type": "telemetry",
-  "devid": "pico-001",
-  "roomId": "leslie-871",
-  "distance_cm": 42.7,
-  "servo_deg": 90,
-  "ts": 1730457600
+    "type": "telemetry",
+    "devid": "pico-001",
+    "roomId": "workshop-001",
+    "distance_cm": 42.7,
+    "servo_deg": 90,
+    "timestamp": 1730457600
 }
+```
 The backend relays this to RoadTwin, which animates the 3D model (e.g., gate tilt or marker position).
 
 ## System Architecture
@@ -191,12 +187,12 @@ Confirm Node v18+.
 ## Credits
 
 ### Development Team
-Kimkpe Arnold Sylvian — IoT Engineer & Educator
+Kimkpe Arnold Sylvian, IoT Engineer & Educator
 
-Lesley (Leslie) Edinam — Interactive Web Developer • 3D Artist (React, Three.js)
+Lesley (Leslie) Edinam, Interactive Web Developer • 3D Artist (React, Three.js)
 
 📜 License
-MIT — free to use for learning, demos, and extensions.
+MIT free to use for learning, demos, and extensions.
 
 ## Roadmap
 

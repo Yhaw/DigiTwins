@@ -1,4 +1,4 @@
-# 🛰️ TwinGate IoT Digital Twin Demo
+# 🛰️ TwinGate, The IoT Digital Twin Demo
 
 **TwinGate** is a lightweight **IoT + Digital Twin** demo connecting a **Raspberry Pi Pico** (MicroPython) to a **web-based 3D dashboard** via a Node.js WebSocket backend.  
 It uses an **ultrasonic sensor** and a **servo motor** to mirror real-world motion in a 3D twin.

@@ -3,7 +3,7 @@
 **TwinGate** is a lightweight **IoT + Digital Twin** demo connecting a **Raspberry Pi Pico** (MicroPython) to a **web-based 3D dashboard** via a Node.js WebSocket backend.  
 It uses an **ultrasonic sensor** and a **servo motor** to mirror real-world motion in a 3D twin.
 
-> Built in collaboration with **Lesley (Leslie) Edinam** — Interactive Web Developer & 3D Artist (React • Three.js).
+> Built in collaboration with **Lesley Edinam** , Interactive Web Developer & 3D Artist (React • Three.js).
 
 ---
 

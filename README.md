@@ -14,22 +14,22 @@ It uses an **ultrasonic sensor** and a **servo motor** to mirror real-world moti
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
-TwinGate/
-│
+```
+DigiTwins-Workshop/
 ├── hardware/
-│ ├── twin-gate-firmware.py # MicroPython firmware for Raspberry Pi Pico
-│ ├── uwebsockets/ # WebSocket client library for Pico
-│ ├── schematic.png # (Optional) wiring diagram
+│   ├── twin-gate-firmware.py   # MicroPython firmware for Raspberry Pi Pico
+│   ├── uwebsockets/           # WebSocket client library for Pico
+│   └── schematic.png         # Hardware wiring diagram
 │
-├── index.js # Backend entry file (WebSocket server)
-├── package.json # Node.js dependencies
-├── README.md # Project documentation
-└── ...
-
-yaml
-Copy code
+├── src/
+│   └── index.js             # Backend server implementation
+│
+├── package.json            # Project dependencies
+├── LICENSE               # MIT License
+└── README.md            # Project documentation
+```
 
 ---
 
@@ -154,7 +154,9 @@ Copy code
 }
 The backend relays this to RoadTwin, which animates the 3D model (e.g., gate tilt or marker position).
 
-🧠 How It Works
+## System Architecture
+
+### Data Flow
 Pico measures distance and updates servo.
 
 Firmware sends WebSocket telemetry to backend (room-scoped).
@@ -163,7 +165,9 @@ Backend broadcasts to RoadTwin (same room).
 
 The 3D twin responds in real time.
 
-🛟 Troubleshooting
+## Troubleshooting
+
+### Common Issues and Solutions
 No device in dashboard
 
 Ensure roomId in firmware matches the room you joined on RoadTwin.
@@ -184,7 +188,9 @@ Run npm install again.
 
 Confirm Node v18+.
 
-👥 Credits
+## Credits
+
+### Development Team
 Kimkpe Arnold Sylvian — IoT Engineer & Educator
 
 Lesley (Leslie) Edinam — Interactive Web Developer • 3D Artist (React, Three.js)
@@ -192,7 +198,9 @@ Lesley (Leslie) Edinam — Interactive Web Developer • 3D Artist (React, Three
 📜 License
 MIT — free to use for learning, demos, and extensions.
 
-📌 Notes & Next Steps
+## Roadmap
+
+### Planned Improvements
 Add a wiring schematic.png under hardware/.
 
 Include a short GIF of the live demo in action.
